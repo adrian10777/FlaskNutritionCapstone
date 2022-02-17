@@ -57,7 +57,7 @@ def createprogram():
     data = request.get_json() # grabs json data sent in the API POST request
     print(data)
 
-    '''
+    
     # fill program name if not present
     if not data.get('program_name'):
         data['program_name'] = ''
@@ -75,33 +75,41 @@ def createprogram():
     db.session.commit()
     return jsonify({'created': newprogram.to_dict()})
 
-    #update route  - allows u to update players info
-    @api.route('/update/<string:id>', methods=['PUT']) #PUT used for updating existing players - just like POST put can accept input
-    @token_required
-    def updateprogram(id):
-    """
-    [PUT] /api/update/<str:id>
-    Accept a dict of all program attributes u wish to change - all K/V pairs are optional
-    This route will work for changing every or just 1 piece of a player's information
-    day 4 5:00
-    """
-    data = request.get_json() # grabs json data sent in the API POST request
-    print(data)
+#update route  - allows u to update players info
+@api.route('/update/<string:id>', methods=['PUT']) #PUT used for updating existing players - just like POST put can accept input
+@token_required
+def updateprogram(id):
+        """
+            [PUT] /api/update/<str:id>
+            Accept a dict of all program attributes u wish to change - all K/V pairs are optional
+            This route will work for changing every or just 1 piece of a player's information
+            day 4 5:00
+            {
+                id = <str>,
+                program_name = <str>,
+                program_cost = <str>,
+                apitoken = <str>
+            }
+        """
 
-    # when it comes to updating player info we already made method to do this, we prob just have to change it a bit
-    # get player obj for this player id
-    program = Program.query.get(id)
-    if not program:
-        return jsonify('update failed': 'No program with that ID')
-    program.from_dict(data)
-    print(program.to_dict())
-    db.session.commit()
-    return jsonify({'updated': program.to_dict()})
+        data = request.get_json() # grabs json data sent in the API POST request
+        print(data)
 
-    #delete route - allows u to delete program info
-    @api.route('/delete/<string:id>', methods=['DELETE'])
-    @token_required
-    def deleteprogram(id):
+        # when it comes to updating player info we already made method to do this, we prob just have to change it a bit
+        # get player obj for this player id
+        program = Program.query.get(id)
+        program.from_dict(data)
+        if not program:
+            return jsonify({'update failed': 'No program with that ID'})
+        program.from_dict(data)
+        print(program.to_dict())
+        db.session.commit()
+        return jsonify({'updated': program.to_dict()})
+
+#delete route - allows u to delete program info
+@api.route('/delete/<string:id>', methods=['DELETE'])
+@token_required
+def deleteprogram(id):
         # check if program of that id exists in db
         p = Program.query.get(id)
         if not p: #  if they do delete if they dont, tell the user
@@ -112,7 +120,6 @@ def createprogram():
         return jsonify({'Deleted':p.to_dict()})
 
 
-'''
 
 
   

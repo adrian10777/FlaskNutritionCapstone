@@ -26,10 +26,11 @@ class Program(db.Model):
     }
 
     def from_dict(self, dict):
-        if dict.get['program_cost']:
-            self.program_cost = dict['program_cost']
+        self.program_cost = dict['program_cost']
         if dict.get['program_name']:
             self.program_name = dict['program_name']
+        else:
+            self.program_name = ''
 
         # id which only should be made for creation not updating
         if not self.id:
