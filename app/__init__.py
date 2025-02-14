@@ -23,6 +23,7 @@ def create_app():
     mail.init_app(app)
 
     CORS(app, origins="https://sda-nutrition.web.app")
+    # CORS(app, origins="http://localhost:3000")
 
     # CORS(app, supports_credentials=True, 
     #      resources={r"/*": {"origins": "http://localhost:3000", 
