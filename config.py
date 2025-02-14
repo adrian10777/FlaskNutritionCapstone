@@ -10,3 +10,19 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS= False
     
+    MAIL_SERVER = 'mail.smtp2go.com'
+    MAIL_PORT = 2525
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'SDA Nutrition'  # Replace with your actual email
+    MAIL_PASSWORD = 'w4o9BlXfNSV7KTio'  # Replace with your actual password
+    MAIL_DEFAULT_SENDER = 'sdanutrition@nutritionsda.com'  # Replace with your email
+# Explanation:
+# - This config class stores the settings used by Flask to connect to the email server.
+# - We define the email server 
+
+#Config file
+# this keeps sensitive settings seperate from app the main code. 
+# Makes it easier to update setting without modifying  the apps core logic.
+
+# if your email credentials or settings change, you can update this one file
+# instead of digging through the entire code base

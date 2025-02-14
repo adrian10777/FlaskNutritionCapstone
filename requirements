@@ -1,3 +1,15 @@
+import alembic
+import click
+import colorama
+from flask import Flask
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+import greenlet
+import itsdangerous
+import jinja2
+import markupsafe
+
+
 alembic==1.7.5
 click==8.0.3
 colorama==0.4.4
@@ -6,9 +18,9 @@ Flask-Migrate==3.1.0
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.2
 itsdangerous==2.0.1
-Jinja2==3.0.3
+jinja2==3.0.3
 Mako==1.1.6
-MarkupSafe==2.0.1
+markupsafe==2.0.1
 python-dotenv==0.19.2
 SQLAlchemy==1.4.31
 Werkzeug==2.0.2
