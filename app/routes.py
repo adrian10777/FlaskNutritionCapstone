@@ -12,7 +12,7 @@ routes = Blueprint('routes', __name__)
 def send_email():
     try:
 
-        data = request.get_json();
+        data = request.get_json()
         print(f"Received data: {data}")
 
         if not data:
@@ -21,7 +21,7 @@ def send_email():
         first_name = data.get("firstName")
         last_name = data.get("lastName")
         message = data.get("message")
-        
+
         # Get JSON data from request
         print(f"Request heasders: {request.headers}")
         data = request.get_json()
