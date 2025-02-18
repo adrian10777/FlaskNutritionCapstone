@@ -17,6 +17,8 @@ class Config:
     MAIL_USERNAME = 'SDA Nutrition'  # Replace with your actual email
     MAIL_PASSWORD = 'w4o9BlXfNSV7KTio'  # Replace with your actual password
     MAIL_DEFAULT_SENDER = 'sdanutrition@nutritionsda.com'  # Replace with your email
+    CELERY_BROKER_URL = 'redis://red-cuptcji3esus738ikfr0:6379'
+    CELERY_RESULT_BACKEND = 'redis://red-cuptcji3esus738ikfr0:6379'
 # Explanation:
 # - This config class stores the settings used by Flask to connect to the email server.
 # - We define the email server 
