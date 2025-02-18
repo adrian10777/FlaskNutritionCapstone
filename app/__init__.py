@@ -6,7 +6,7 @@ from .api.routes2 import api
 from .payments.routesstripe import payments
 # import blueprints
 from flask_sqlalchemy import SQLAlchemy
-from celery import Celery
+# from celery import Celery
 
 from .models import db
 from flask_migrate import Migrate
