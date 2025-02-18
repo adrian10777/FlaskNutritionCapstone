@@ -6,6 +6,7 @@ from .api.routes2 import api
 from .payments.routesstripe import payments
 # import blueprints
 from flask_sqlalchemy import SQLAlchemy
+from celery import Celery
 
 from .models import db
 from flask_migrate import Migrate
@@ -18,6 +19,9 @@ def create_app():
 
     # Load configuration settings
     app.config.from_object(Config)
+
+    #initialize celery with Flask config
+    # celery = make_celery(app)
 
     #Initialize mail with app
     mail.init_app(app)
@@ -38,7 +42,16 @@ def create_app():
 
     return app
 
+# def make_celery(app):
+#     """Create a Celery instance using Flask app context."""
+#     celery = Celery(
+#         app.import_name,
+#         backend=app.config['CELERY_RESULT_BACKEND'],
+#         broker = app.config['CELERY_BROKER_URL']
+#     )
+#     celery.conf.update(app.config)
 
+#     return celery
 
 
 
