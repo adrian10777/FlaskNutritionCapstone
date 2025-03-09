@@ -1,7 +1,6 @@
 from . import  mail
 from flask import Blueprint, request, jsonify, render_template
 from .email_service import send_contact_email
-from threading import Thread
 from flask_mail import Message
 #This file is for handling API routes, were we handle incoming requests, like the the frontend submits a form
 
@@ -13,7 +12,7 @@ routes = Blueprint('routes', __name__)
 def send_email():
     try:
 
-        data = request.get_json()
+        data = request.get_json();
         print(f"Received data: {data}")
 
         if not data:
@@ -22,7 +21,7 @@ def send_email():
         first_name = data.get("firstName")
         last_name = data.get("lastName")
         message = data.get("message")
-
+        
         # Get JSON data from request
         print(f"Request heasders: {request.headers}")
         data = request.get_json()
@@ -40,12 +39,7 @@ def send_email():
         if not all([email, first_name, last_name, message]):
                 return jsonify({"message": "Missing required fields"}), 400
         # Call the function with ALL parameters
-    
-    #  send_contact_email(mail, email, first_name, last_name, message)
-
-        thread = Thread(target = send_contact_email, args=(mail, email, first_name, last_name, message))
-        thread.start()
-        # send_email.apply_async(args=[email, first_name, last_name, message])
+        send_contact_email(mail, email, first_name, last_name, message)
 
         print(" Email sent successfully!")
         return jsonify({"message": "Email sent successfully!"}), 200
